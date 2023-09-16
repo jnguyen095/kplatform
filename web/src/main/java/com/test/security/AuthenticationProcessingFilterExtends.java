@@ -41,6 +41,7 @@ public class AuthenticationProcessingFilterExtends extends
 		String j_username = obtainUsername(request);
         String username = j_username;
 		String password = obtainPassword(request);
+		String retailerCode = obtainRetailerCode(request);
 		if (username == null) {
 			username = "";
 		}
@@ -50,11 +51,15 @@ public class AuthenticationProcessingFilterExtends extends
 		}
 		
 		username = username.trim();
+		if(StringUtils.isNotBlank(retailerCode)){
+			username = username + '|' + retailerCode;
+		}
 		UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
 
 		// Place the last username attempted into HttpSession for views
 		request.getSession().setAttribute(Constants.ACEGI_SECURITY_LAST_USERNAME_KEY, username);
 		request.getSession().setAttribute(Constants.ACEGI_SECURITY_FORM_USERNAME_KEY, j_username);
+		request.getSession().setAttribute(Constants.ACEGI_SECURITY_FORM_RETAILER_CODE, retailerCode);
 		String lang = request.getParameter(this.languageParam);
 
 		if (lang == null || lang.trim().equals("")) {
@@ -103,6 +108,10 @@ public class AuthenticationProcessingFilterExtends extends
 	 */
 	protected String obtainUsername(HttpServletRequest request) {
 		return StringUtils.trim(request.getParameter(Constants.ACEGI_SECURITY_FORM_USERNAME_KEY));
+	}
+
+	protected String obtainRetailerCode(HttpServletRequest request){
+		return StringUtils.trim(request.getParameter(Constants.ACEGI_SECURITY_FORM_RETAILER_CODE));
 	}
 
 	/**

@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 public class UserDTO implements Serializable {
     private Long userId;
     private UserGroupDTO userGroup;
+    private RetailerDTO retailer;
     private String userName;
     private String password;
     private String email;
@@ -101,5 +102,13 @@ public class UserDTO implements Serializable {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public RetailerDTO getRetailer() {
+        return retailer;
+    }
+
+    public void setRetailer(RetailerDTO retailer) {
+        this.retailer = retailer;
     }
 }

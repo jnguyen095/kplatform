@@ -10,6 +10,9 @@
                 <h3 class="panel-title">Please Sign In</h3>
             </div>
             <div class="panel-body">
+                <c:if test="${param.error == 1}">
+                    <label id="label_login" class="error-label alert alert-danger" data-error=""><fmt:message key="login.error.passwordmissedmatch"/></label>
+                </c:if>
                 <form role="form" action="<c:url value="/j_security_check"/>" method="post">
                     <fieldset>
                         <div class="form-group">
@@ -25,6 +28,7 @@
                         </div>
                         <!-- Change this to a button or input when using this as a form -->
                         <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                        <input type="hidden" name="retailerCode" value="${retailerCode}"/>
                     </fieldset>
                 </form>
             </div>

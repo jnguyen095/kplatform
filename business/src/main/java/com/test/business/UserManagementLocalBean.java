@@ -24,5 +24,5 @@ public interface UserManagementLocalBean {
 
     Boolean isDuplicated(String userName, Long id);
 
-    UserDTO findByUserName(String username) throws ObjectNotFoundException;
+    UserDTO findByUserName(String username, String retailerCode) throws ObjectNotFoundException;
 }

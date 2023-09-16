@@ -65,6 +65,13 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
                 request.setAttribute("error", 1);
                 request.getRequestDispatcher(localDefaultFailureUrl).forward(request, response);
             } else {
+                Object obj = request.getSession().getAttribute("retailerCode");
+                if(obj != null){
+                    String retailerCode = (String)obj;
+                    if(retailerCode.length() > 1) {
+                        localDefaultFailureUrl = "/" + retailerCode + localDefaultFailureUrl;
+                    }
+                }
                 logger.debug("Redirecting to " + localDefaultFailureUrl);
                 redirectStrategy.sendRedirect(request, response, localDefaultFailureUrl);
             }

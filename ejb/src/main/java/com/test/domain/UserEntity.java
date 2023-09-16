@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 public class UserEntity {
     private Long userId;
     private UserGroupEntity userGroup;
+    private RetailerEntity retailer;
     private String userName;
     private String password;
     private String email;
@@ -112,5 +113,15 @@ public class UserEntity {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    @ManyToOne
+    @javax.persistence.JoinColumn(name = "RetailerId")
+    public RetailerEntity getRetailer() {
+        return retailer;
+    }
+
+    public void setRetailer(RetailerEntity retailer) {
+        this.retailer = retailer;
     }
 }

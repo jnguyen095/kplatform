@@ -69,8 +69,8 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
     }
 
     @Override
-    public UserDTO findByUserName(String username) throws ObjectNotFoundException {
-        UserEntity entity = userLocalBean.findByUserNameAndActive(username);
+    public UserDTO findByUserName(String username, String retailerCode) throws ObjectNotFoundException {
+        UserEntity entity = userLocalBean.findByUserNameAndActive(username, retailerCode);
         if(entity != null) {
             return DozerSingletonMapper.getInstance().map(entity, UserDTO.class);
         }

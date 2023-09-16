@@ -14,5 +14,5 @@ import javax.ejb.Local;
 @Local
 public interface UserLocalBean extends GenericSessionBean<UserEntity, Long> {
     Boolean isDuplicated(String userName, Long id);
-    UserEntity findByUserNameAndActive(String userName);
+    UserEntity findByUserNameAndActive(String userName, String retailerCode);
 }

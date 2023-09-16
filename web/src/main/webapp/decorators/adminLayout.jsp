@@ -248,9 +248,20 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a class="dropdown-item" href="<c:url value="/logout.html"/>">
-                            <i class="fa fa-sign-out fa-fw"></i> Logout
-                        </a>
+                        <security:authentication property="retailerCode" var="retailerCode"/>
+                        <c:choose>
+                            <c:when test="${!empty retailerCode}">
+                                <a class="dropdown-item" href="/<c:url value="${retailerCode}/logout.html"/>">
+                                    <i class="fa fa-sign-out fa-fw"></i> Logout
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="dropdown-item" href="/logout.html">
+                                    <i class="fa fa-sign-out fa-fw"></i> Logout
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
+
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -268,11 +279,26 @@
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> <fmt:message key="menu.admin"/><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
+                                <security:authorize ifAnyGranted="ROLE_LOGON">
+                                    [LOGON]
+                                </security:authorize>
+                                <security:authorize ifAnyGranted="ROLE_ADMIN">
+                                    [ADMIN]
+                                </security:authorize>
+                                <security:authorize ifAnyGranted="SYSADMIN">
+                                    [SYSADMIN]
+                                </security:authorize>
+                                <security:authorize ifAnyGranted="CASHIER">
+                                    [CASHIER]
+                                </security:authorize>
+
+                                <a href="<c:url value="/sysadmin/retailer/list.html"/>"><fmt:message key="retailer.title"/></a>
                                 <a href="<c:url value="/admin/usergroup/list.html"/>"><fmt:message key="usergroup.title"/></a>
                                 <a href="<c:url value="/admin/user/list.html"/>"><fmt:message key="user.title"/></a>
                                 <a href="<c:url value="/admin/category/list.html"/>"><fmt:message key="category.title"/></a>
                                 <a href="<c:url value="/admin/area-name/list.html"/>"><fmt:message key="areaname.title"/></a>
                                 <a href="<c:url value="/admin/table-name/list.html"/>"><fmt:message key="tablename.title"/></a>
+
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

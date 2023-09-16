@@ -3,6 +3,8 @@
  */
 package com.test.security;
 
+import com.test.security.util.SecurityUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,7 +36,13 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
 			HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
         String myLocalLogoutSuccessUrl = this.logoutSuccessUrl;
-
+		Object obj = request.getSession().getAttribute("retailerCode");
+		if(obj != null){
+			String retailerCode = (String)obj;
+			if(retailerCode.length() > 1) {
+				myLocalLogoutSuccessUrl = "/" + retailerCode + "/login.html?action=logout";
+			}
+		}
         SecurityContextHolder.clearContext();
         request.getSession(true); //Create new session
         redirectStrategy.sendRedirect(request, response, myLocalLogoutSuccessUrl);

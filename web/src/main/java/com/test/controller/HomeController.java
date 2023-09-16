@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,7 +44,14 @@ public class HomeController extends ApplicationObjectSupport{
     @RequestMapping("/admin/home.html")
     public ModelAndView adminHome(@ModelAttribute(value = "item")ProductCommand command){
         ModelAndView mav = new ModelAndView("home");
-        mav.addObject("name", SecurityUtils.getPrincipal().getUserName());
+        mav.addObject("name", SecurityUtils.getPrincipal().getLoginName());
+        return mav;
+    }
+
+    @RequestMapping("/{retailerCode}/home.html")
+    public ModelAndView retailerHome(@PathVariable(value = "retailerCode") String retailerCode ,@ModelAttribute(value = "item")ProductCommand command){
+        ModelAndView mav = new ModelAndView("home");
+        mav.addObject("name", retailerCode);
         return mav;
     }
 

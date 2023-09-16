@@ -21,6 +21,7 @@
         <custom-filter ref="ajaxTimeoutRedirectFilter" after="EXCEPTION_TRANSLATION_FILTER"/>
 
         <intercept-url pattern="/mobile/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/sysadmin/**" access="SYSADMIN" />
         <intercept-url pattern="/admin/**" access="ADMIN,SYSADMIN" />
         <intercept-url pattern="/logon/**" access="LOGON" />
 
@@ -56,7 +57,7 @@
     </authentication-manager>
 
     <beans:bean id="myLogoutSuccessHandler" class="com.test.security.MyLogoutSuccessHandler">
-		<beans:property name="logoutSuccessUrl" value="/"></beans:property>
+		<beans:property name="logoutSuccessUrl" value="/login.html"></beans:property>
 	</beans:bean>
 
     <beans:bean id="myRememberMeAuthenticationFilter" class=

@@ -24,6 +24,7 @@ public class Constants {
     public static final String ACEGI_SECURITY_FORM_USERNAME_KEY = "j_username";
     public static final String ACEGI_SECURITY_FORM_PASSWORD_KEY = "j_password";
     public static final String ACEGI_SECURITY_LAST_USERNAME_KEY = "ACEGI_SECURITY_LAST_USERNAME";
+    public static final String ACEGI_SECURITY_FORM_RETAILER_CODE = "retailerCode";
 
     public static final String MESSAGE_RESPONSE = "messageResponse";
 

@@ -7,6 +7,7 @@
         <class>com.test.domain.TableNameEntity</class>
         <class>com.test.domain.UserGroupEntity</class>
         <class>com.test.domain.UserEntity</class>
+        <class>com.test.domain.RetailerEntity</class>
 
 
 

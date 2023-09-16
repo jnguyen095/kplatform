@@ -19,6 +19,7 @@
     <jee:local-slsb jndi-name="java:app/business-module-1.0/BranchManagementSessionEJB!com.test.business.BranchManagementLocalBean" business-interface="com.test.business.BranchManagementLocalBean" id="branchManagementLocalBean"/>
     <jee:local-slsb jndi-name="java:app/business-module-1.0/TableNameManagementSessionEJB!com.test.business.TableNameManagementLocalBean" business-interface="com.test.business.TableNameManagementLocalBean" id="tableNameManagementLocalBean"/>
     <jee:local-slsb jndi-name="java:app/business-module-1.0/AreaNameManagementSessionEJB!com.test.business.AreaNameManagementLocalBean" business-interface="com.test.business.AreaNameManagementLocalBean" id="areaNameManagementLocalBean"/>
+    <jee:local-slsb jndi-name="java:app/business-module-1.0/RetailerManagementSessionEJB!com.test.business.RetailerManagementLocalBean" business-interface="com.test.business.RetailerManagementLocalBean" id="retailerManagementLocalBean"/>
 
     <bean id="userSecurityAdvice" class="com.test.security.MyUserDetailService">
         <property name="userManagementLocalBean" ref="userManagementLocalBean"/>

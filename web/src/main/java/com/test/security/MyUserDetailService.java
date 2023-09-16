@@ -68,12 +68,23 @@ public class MyUserDetailService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException, DataAccessException {
 		try {
-			UserDTO account = userManagementLocalBean.findByUserName(username);
+			String retailerCode = null;
+			if(username.indexOf('|') > 0){
+				retailerCode = username.substring(username.indexOf('|') + 1, username.length());
+				username = username.substring(0, username.indexOf('|'));
+			}
+			UserDTO account = userManagementLocalBean.findByUserName(username, retailerCode);
 			if(account != null) {
 				List<GrantedAuthority> authorities = new ArrayList<>();
 				authorities.add(new SimpleGrantedAuthority("LOGON"));
 				authorities.add(new SimpleGrantedAuthority(account.getUserGroup().getCode()));
-				MyUserDetail loginUser = new MyUserDetail(username, account.getPassword(), true, true, true, true, authorities);
+				MyUserDetail loginUser = new MyUserDetail(username, account.getPassword(), account.getStatus(), true, true, account.getStatus(), authorities);
+				loginUser.setLoginName(account.getUserName());
+				if(account.getRetailer() != null && account.getRetailer().getRetailerId() != null){
+					loginUser.setRetailerCode(account.getRetailer().getCode());
+					loginUser.setRetailerId(account.getRetailer().getRetailerId());
+					loginUser.setRetailerName(account.getRetailer().getName());
+				}
 				return loginUser;
 			}else{
 				throw new UsernameNotFoundException("Not found user with login: " + username);

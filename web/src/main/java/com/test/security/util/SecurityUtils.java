@@ -19,20 +19,20 @@ public class SecurityUtils {
 	 * This getLoginUserId() is only used for doing jUnit test case only
 	 * @return the current login name for online user
 	 */
-	public static Long getLoginUserId() {
-		return getPrincipal().getUserId();
+	public static Long getRetailerId() {
+		return getPrincipal().getRetailerId();
 	}
 
-    public static Long getPortalId(){
-        return getPrincipal().getPortalId();
+    public static String getRetailerCode(){
+        return getPrincipal().getRetailerCode();
     }
 
-    public static String getPortalCode(){
-        return getPrincipal().getPortalCode();
+    public static String getRetailerName(){
+        return getPrincipal().getRetailerName();
     }
 
 	public static String getLoginName(){
-    	return getPrincipal().getUserName();
+    	return getPrincipal().getLoginName();
 	}
 
 	public static boolean userHasAuthority(String roleCode) {

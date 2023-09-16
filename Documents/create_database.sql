@@ -6,6 +6,20 @@ create schema KPlatform;
 
 set SEARCH_PATH to KPlatform;
 
+CREATE TABLE Retailer (
+	RetailerId BIGSERIAL NOT NULL PRIMARY KEY,
+	Code VARCHAR NOT NULL UNIQUE,
+	Name VARCHAR NOT NULL,
+	Status BOOLEAN NOT NULL DEFAULT TRUE,
+	Address VARCHAR,
+	Phone VARCHAR,
+	CreatedDate TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+	ModifiedDate TIMESTAMP WITHOUT TIME ZONE
+);
+
+insert into Retailer(Code, Name, Address, Phone, CreatedDate, ModifiedDate) values('R00001', 'KAng', 'c/c 4S1', '0367139698', now(), now());
+insert into Retailer(Code, Name, Address, Phone, CreatedDate, ModifiedDate) values('R00002', 'XRP', 'c/c 4S2', '0982647619', now(), now());
+
 CREATE TABLE UserGroup (
 	UserGroupID BIGSERIAL NOT NULL PRIMARY KEY,
 	Code VARCHAR NOT NULL,
@@ -23,6 +37,7 @@ insert into UserGroup(Code, groupName) values('USER', 'User');
 CREATE TABLE us3r (
 	Us3rID BIGSERIAL NOT NULL PRIMARY KEY,
 	UserGroupID BIGINT NOT NULL REFERENCES UserGroup(UserGroupID),
+	RetailerId BIGINT REFERENCES Retailer(RetailerId),
 	UserName VARCHAR NOT NULL UNIQUE,
 	Password VARCHAR NOT NULL,
 	Email VARCHAR(125),
@@ -31,6 +46,8 @@ CREATE TABLE us3r (
 	CreatedDate TIMESTAMP WITHOUT TIME ZONE NOT NULL,
 	ModifiedDate TIMESTAMP WITHOUT TIME ZONE
 );
+
+alter table us3r add COLUMN RetailerId BIGINT NULL REFERENCES Retailer(RetailerId);
 
 CREATE TABLE AreaName (
 	AreaNameId BIGSERIAL NOT NULL PRIMARY KEY,

@@ -11,4 +11,7 @@
     <decorator name="login" page="loginLayout.jsp">
         <pattern>/login.*</pattern>
     </decorator>
+    <decorator name="login" page="loginLayout.jsp">
+        <pattern>/**/login.*</pattern>
+    </decorator>
 </decorators>

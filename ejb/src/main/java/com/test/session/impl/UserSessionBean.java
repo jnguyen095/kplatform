@@ -2,6 +2,7 @@ package com.test.session.impl;
 
 import com.test.domain.UserEntity;
 import com.test.session.UserLocalBean;
+import org.apache.commons.lang.StringUtils;
 
 import javax.ejb.Stateless;
 import javax.persistence.Query;
@@ -30,13 +31,19 @@ public class UserSessionBean extends AbstractSessionBean<UserEntity, Long> imple
     }
 
     @Override
-    public UserEntity findByUserNameAndActive(String userName) {
-        StringBuffer sql = new StringBuffer("FROM UserEntity ug WHERE ug.userName = :userName AND ug.status = :status");
-
+    public UserEntity findByUserNameAndActive(String userName, String retailerCode) {
+        StringBuffer sql = new StringBuffer("FROM UserEntity u WHERE u.userName = :userName AND u.status = :status");
+        if(StringUtils.isNotBlank(retailerCode)){
+            sql.append(" AND u.retailer.code = :retailerCode");
+        }else{
+            sql.append(" AND u.retailer.retailerId IS NULL ");
+        }
         Query query = entityManager.createQuery(sql.toString());
         query.setParameter("userName", userName);
         query.setParameter("status", Boolean.TRUE);
-
+        if(StringUtils.isNotBlank(retailerCode)){
+            query.setParameter("retailerCode", retailerCode);
+        }
         Object ob = query.getSingleResult();
         if(ob != null){
             return (UserEntity)ob;

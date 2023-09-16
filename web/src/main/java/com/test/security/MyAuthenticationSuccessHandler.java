@@ -28,6 +28,13 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
         if (isAlwaysUseDefaultTargetUrl() || StringUtils.hasText(request.getParameter(getTargetUrlParameter()))) {
         	clearAuthenticationAttributes(request);
             String targetUrl = getDefaultTargetUrl();
+            Object obj = request.getSession().getAttribute("retailerCode");
+            if(obj != null){
+                String retailerCode = (String)obj;
+                if(retailerCode.length() > 1) {
+                    targetUrl = "/" + retailerCode + targetUrl;
+                }
+            }
 
             logger.info("Redirecting to DefaultSavedRequest Url: " + targetUrl);
             getRedirectStrategy().sendRedirect(request, response, targetUrl);
