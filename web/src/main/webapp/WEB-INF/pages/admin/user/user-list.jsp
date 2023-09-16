@@ -23,11 +23,21 @@
                                            id="tableList" excludedParams="checkList"
                                            pagesize="${items.maxPageItems}" export="false" class="table table-striped table-bordered table-hover dataTable no-footer">
 
-                                <display:column headerClass="table_header" property="userGroup.groupName" sortName="userGroup.groupName" sortable="true" titleKey="usergroup.title" />
                                 <display:column headerClass="table_header sorting" property="userName" sortName="userName" sortable="true" titleKey="user.userName" />
+                                <display:column headerClass="table_header" property="userGroup.groupName" sortName="userGroup.groupName" sortable="true" titleKey="usergroup.title" />
+
                                 <display:column headerClass="table_header" property="email" sortName="email" sortable="true" titleKey="user.email" />
                                 <display:column headerClass="table_header" property="phone" sortName="phone" sortable="true" titleKey="user.phone" />
-
+                                <display:column headerClass="table_header" sortName="status" sortable="true" titleKey="user.status">
+                                    <c:choose>
+                                        <c:when test="${tableList.status}">
+                                            <fmt:message key="user.status.active"></fmt:message>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <fmt:message key="user.status.inactive"></fmt:message>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </display:column>
                                 <display:column headerClass="col-actions" class="col-actions" titleKey="label.action">
                                     <a href="<c:url value="/admin/user/edit.html?pojo.userId=${tableList.userId}"/>"> <i class="fa fa-edit"></i></a>
                                 </display:column>

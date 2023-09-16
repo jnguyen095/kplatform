@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 <html>
 <head>
-    <title>HomeLand - <decorator:title default="Welcome!"/></title>
+    <title><fmt:message key="label.platform"/> - <decorator:title default="Welcome!"/></title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,7 +42,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home.html">HomeLand</a>
+            <a class="navbar-brand" href="home.html"><fmt:message key="label.platform"/> </a>
         </div>
         <!-- /.navbar-header -->
 
@@ -271,9 +271,8 @@
                                 <a href="<c:url value="/admin/usergroup/list.html"/>"><fmt:message key="usergroup.title"/></a>
                                 <a href="<c:url value="/admin/user/list.html"/>"><fmt:message key="user.title"/></a>
                                 <a href="<c:url value="/admin/category/list.html"/>"><fmt:message key="category.title"/></a>
-                                <a href="<c:url value="/admin/table-name/list.html"/>"><fmt:message key="tablename.title"/></a>
                                 <a href="<c:url value="/admin/area-name/list.html"/>"><fmt:message key="areaname.title"/></a>
-
+                                <a href="<c:url value="/admin/table-name/list.html"/>"><fmt:message key="tablename.title"/></a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
