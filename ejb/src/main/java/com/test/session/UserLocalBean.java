@@ -12,6 +12,7 @@ import javax.ejb.Local;
  * To change this template use File | Settings | File Templates.
  */
 @Local
-public interface UserLocalBean extends GenericSessionBean<UserEntity, Integer> {
-    Boolean isDuplicated(String userName, Integer id);
+public interface UserLocalBean extends GenericSessionBean<UserEntity, Long> {
+    Boolean isDuplicated(String userName, Long id);
+    UserEntity findByUserNameAndActive(String userName);
 }

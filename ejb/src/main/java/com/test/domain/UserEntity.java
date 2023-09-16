@@ -13,24 +13,24 @@ import java.sql.Timestamp;
 @javax.persistence.Table(name = "us3r")
 @Entity
 public class UserEntity {
-    private Integer userId;
+    private Long userId;
     private UserGroupEntity userGroup;
     private String userName;
     private String password;
     private String email;
     private String phone;
-    private Boolean requestPassword;
     private Timestamp createdDate;
     private Timestamp updatedDate;
+    private Boolean status;
 
     @javax.persistence.Column(name = "Us3rID")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -84,16 +84,6 @@ public class UserEntity {
         this.phone = phone;
     }
 
-    @javax.persistence.Column(name = "RequestPassword", columnDefinition = "BIT", length = 1)
-    @Basic
-    public Boolean getRequestPassword() {
-        return requestPassword;
-    }
-
-    public void setRequestPassword(Boolean requestPassword) {
-        this.requestPassword = requestPassword;
-    }
-
     @javax.persistence.Column(name = "CreatedDate")
     @Basic
     public Timestamp getCreatedDate() {
@@ -104,7 +94,7 @@ public class UserEntity {
         this.createdDate = createdDate;
     }
 
-    @javax.persistence.Column(name = "UpdatedDate")
+    @javax.persistence.Column(name = "ModifiedDate")
     @Basic
     public Timestamp getUpdatedDate() {
         return updatedDate;
@@ -112,5 +102,15 @@ public class UserEntity {
 
     public void setUpdatedDate(Timestamp updatedDate) {
         this.updatedDate = updatedDate;
+    }
+
+    @javax.persistence.Column(name = "Status")
+    @Basic
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

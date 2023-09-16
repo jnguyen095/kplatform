@@ -31,6 +31,10 @@ public class SecurityUtils {
         return getPrincipal().getPortalCode();
     }
 
+	public static String getLoginName(){
+    	return getPrincipal().getUserName();
+	}
+
 	public static boolean userHasAuthority(String roleCode) {
 		List<GrantedAuthority> list = (List<GrantedAuthority>)(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 		List<GrantedAuthority> authories = list;

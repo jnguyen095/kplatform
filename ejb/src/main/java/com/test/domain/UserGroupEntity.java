@@ -12,18 +12,18 @@ import javax.persistence.*;
 @javax.persistence.Table(name = "usergroup")
 @Entity
 public class UserGroupEntity {
-    private Integer userGroupId;
+    private Long userGroupId;
     private String code;
     private String groupName;
 
     @javax.persistence.Column(name = "UserGroupID")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getUserGroupId() {
+    public Long getUserGroupId() {
         return userGroupId;
     }
 
-    public void setUserGroupId(Integer userGroupId) {
+    public void setUserGroupId(Long userGroupId) {
         this.userGroupId = userGroupId;
     }
 

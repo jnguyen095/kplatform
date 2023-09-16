@@ -89,8 +89,9 @@ public class UserController extends ApplicationObjectSupport {
         Map<String, Object> properties = new HashMap<String, Object>();
         if(StringUtils.isBlank(command.getSortExpression())){
             command.setSortExpression("createdDate");
+            command.setSortDirection(Constants.SORT_ASC);
         }
-        command.setSortDirection(Constants.SORT_ASC);
+
         Object[] results = this.userManagementLocalBean.searchByProperties(properties, command.getSortExpression(), command.getSortDirection(), command.getFirstItem(), command.getMaxPageItems());
         command.setListResult((List<UserDTO>)results[1]);
         command.setTotalItems(Integer.valueOf(results[0].toString()));

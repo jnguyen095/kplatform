@@ -38,7 +38,7 @@ public class UserValidator extends ApplicationObjectSupport implements Validator
 
     private void checkUniqueCode(UserCommand command, Errors errors) {
         String userName = command.getPojo().getUserName();
-        Integer id = command.getPojo().getUserId();
+        Long id = command.getPojo().getUserId();
         if(StringUtils.isNotBlank(userName)){
             Boolean isDuplicated = userManagementLocalBean.isDuplicated(userName, id);
             if(isDuplicated){

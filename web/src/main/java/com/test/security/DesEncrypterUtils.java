@@ -18,7 +18,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 
 /**
- * @author Nguyen Hai Vien
+ * @author Nguyen Nhu Khang
  * 
  */
 public final class DesEncrypterUtils {

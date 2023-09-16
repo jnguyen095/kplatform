@@ -2,6 +2,7 @@ package com.test.business.impl;
 
 import com.test.business.UserGroupManagementLocalBean;
 import com.test.domain.UserGroupEntity;
+import com.test.dto.UserDTO;
 import com.test.dto.UserGroupDTO;
 import com.test.session.UserGroupLocalBean;
 import com.test.utils.DozerSingletonMapper;
@@ -43,7 +44,7 @@ public class UserGroupManagementSessionBean implements UserGroupManagementLocalB
     @Override
     public UserGroupDTO saveOrUpdate(UserGroupDTO pojo) throws DuplicateKeyException{
         UserGroupEntity entity = DozerSingletonMapper.getInstance().map(pojo, UserGroupEntity.class);
-        Integer userGroupId = entity.getUserGroupId();
+        Long userGroupId = entity.getUserGroupId();
         if(userGroupId != null){
             entity = userGroupLocalBean.update(entity);
         }else{
@@ -53,13 +54,13 @@ public class UserGroupManagementSessionBean implements UserGroupManagementLocalB
     }
 
     @Override
-    public UserGroupDTO findById(Integer userGroupId) throws ObjectNotFoundException{
+    public UserGroupDTO findById(Long userGroupId) throws ObjectNotFoundException{
         UserGroupEntity entity = userGroupLocalBean.findById(userGroupId);
         return DozerSingletonMapper.getInstance().map(entity, UserGroupDTO.class);
     }
 
     @Override
-    public Boolean isDuplicated(String code, Integer id) {
+    public Boolean isDuplicated(String code, Long id) {
         return userGroupLocalBean.isDuplicated(code, id);
     }
 
@@ -72,4 +73,6 @@ public class UserGroupManagementSessionBean implements UserGroupManagementLocalB
         }
         return dtos;
     }
+
+
 }

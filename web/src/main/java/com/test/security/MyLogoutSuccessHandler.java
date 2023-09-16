@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author Nguyen Hai Vien
+ * @author Nguyen Nhu Khang
  *
  */
 public class MyLogoutSuccessHandler implements LogoutSuccessHandler {

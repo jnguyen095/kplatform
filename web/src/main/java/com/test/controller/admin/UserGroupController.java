@@ -79,8 +79,9 @@ public class UserGroupController extends ApplicationObjectSupport {
         Map<String, Object> properties = new HashMap<String, Object>();
         if(StringUtils.isBlank(command.getSortExpression())){
             command.setSortExpression("groupName");
+            command.setSortDirection(Constants.SORT_ASC);
         }
-        command.setSortDirection(Constants.SORT_ASC);
+
         Object[] results = this.userGroupManagementLocalBean.searchByProperties(properties, command.getSortExpression(), command.getSortDirection(), command.getFirstItem(), command.getMaxPageItems());
         command.setListResult((List<UserGroupDTO>)results[1]);
         command.setTotalItems(Integer.valueOf(results[0].toString()));

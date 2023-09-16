@@ -1,22 +1,34 @@
 package com.test.security;
 
 
+import com.test.business.UserManagementLocalBean;
+import com.test.dto.UserDTO;
+import com.test.security.util.MyUserDetail;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserCache;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import javax.ejb.ObjectNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
- * @author Nguyen Hai Vien
+ * @author Nguyen Nhu Khang
  * 
  */
 
 public class MyUserDetailService implements UserDetailsService {
     private transient final Logger log = Logger.getLogger(getClass());
 
+	@Autowired
+	private UserManagementLocalBean userManagementLocalBean;
 	protected UserCache userCache = null;
 
     /**
@@ -55,10 +67,24 @@ public class MyUserDetailService implements UserDetailsService {
 	 */
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException, DataAccessException {
-
-		return null;
+		try {
+			UserDTO account = userManagementLocalBean.findByUserName(username);
+			if(account != null) {
+				List<GrantedAuthority> authorities = new ArrayList<>();
+				authorities.add(new SimpleGrantedAuthority("LOGON"));
+				authorities.add(new SimpleGrantedAuthority(account.getUserGroup().getCode()));
+				MyUserDetail loginUser = new MyUserDetail(username, account.getPassword(), true, true, true, true, authorities);
+				return loginUser;
+			}else{
+				throw new UsernameNotFoundException("Not found user with login: " + username);
+			}
+		}catch (ObjectNotFoundException ex){
+			throw new UsernameNotFoundException("Not found user with login: " + username);
+		}
 	}
 
-
+	public void setUserManagementLocalBean(UserManagementLocalBean userManagementLocalBean) {
+		this.userManagementLocalBean = userManagementLocalBean;
+	}
 
 }

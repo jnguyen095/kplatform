@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HomeLand.iml" filepath="$PROJECT_DIR$/HomeLand.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KANG.iml" filepath="$PROJECT_DIR$/KANG.iml" />
       <module fileurl="file://$PROJECT_DIR$/business/business-module.iml" filepath="$PROJECT_DIR$/business/business-module.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common-module.iml" filepath="$PROJECT_DIR$/common/common-module.iml" />
@@ -14,4 +15,3 @@
     </modules>
   </component>
 </project>
-

@@ -5,7 +5,7 @@
 
 <parent>
     <groupId>com.test</groupId>
-    <artifactId>HomeLand</artifactId>
+    <artifactId>KANG</artifactId>
     <version>1.0</version>
   </parent>
 

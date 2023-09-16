@@ -12,6 +12,8 @@ import javax.ejb.Local;
  * To change this template use File | Settings | File Templates.
  */
 @Local
-public interface UserGroupLocalBean extends GenericSessionBean<UserGroupEntity, Integer>{
-    Boolean isDuplicated(String code, Integer id);
+public interface UserGroupLocalBean extends GenericSessionBean<UserGroupEntity, Long>{
+    Boolean isDuplicated(String code, Long id);
+
+
 }

@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 
 /**
- * @author Nguyen Hai Vien
+ * @author Nguyen Nhu Khang
  *
  */
 public class MyPasswordEncoder implements PasswordEncoder {

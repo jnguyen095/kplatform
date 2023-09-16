@@ -11,12 +11,13 @@ import java.sql.Timestamp;
  * To change this template use File | Settings | File Templates.
  */
 public class UserDTO implements Serializable {
-    private Integer userId;
+    private Long userId;
     private UserGroupDTO userGroup;
     private String userName;
     private String password;
     private String email;
     private String phone;
+    private Boolean status;
     private Boolean requestPassword;
     private Timestamp createdDate;
     private Timestamp updatedDate;
@@ -29,11 +30,11 @@ public class UserDTO implements Serializable {
         this.updatedDate = updatedDate;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -94,4 +95,11 @@ public class UserDTO implements Serializable {
     }
 
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 }

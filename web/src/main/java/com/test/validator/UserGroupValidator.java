@@ -36,7 +36,7 @@ public class UserGroupValidator implements Validator {
 
     private void checkUniqueCode(UserGroupCommand command, Errors errors) {
         String code = command.getPojo().getCode();
-        Integer id = command.getPojo().getUserGroupId();
+        Long id = command.getPojo().getUserGroupId();
         if(StringUtils.isNotBlank(code)){
             Boolean isDuplicated = userGroupManagementLocalBean.isDuplicated(code, id);
             if(isDuplicated){

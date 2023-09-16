@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * @author Nguyen Hai Vien
+ * @author Nguyen Nhu Khang
  *
  */
 public class MyAuthenticationFailureHandler implements AuthenticationFailureHandler {

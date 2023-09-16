@@ -10,7 +10,7 @@ import java.io.Serializable;
  * To change this template use File | Settings | File Templates.
  */
 public class UserGroupDTO implements Serializable {
-    private Integer userGroupId;
+    private Long userGroupId;
     private String code;
     private String groupName;
 
@@ -22,11 +22,11 @@ public class UserGroupDTO implements Serializable {
         this.groupName = groupName;
     }
 
-    public Integer getUserGroupId() {
+    public Long getUserGroupId() {
         return userGroupId;
     }
 
-    public void setUserGroupId(Integer userGroupId) {
+    public void setUserGroupId(Long userGroupId) {
         this.userGroupId = userGroupId;
     }
 

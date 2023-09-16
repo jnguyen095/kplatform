@@ -1,5 +1,6 @@
 package com.test.business;
 
+import com.test.dto.UserDTO;
 import com.test.dto.UserGroupDTO;
 
 import javax.ejb.DuplicateKeyException;
@@ -21,9 +22,10 @@ public interface UserGroupManagementLocalBean {
 
     UserGroupDTO saveOrUpdate(UserGroupDTO pojo) throws DuplicateKeyException;
 
-    UserGroupDTO findById(Integer userGroupId) throws ObjectNotFoundException;
+    UserGroupDTO findById(Long userGroupId) throws ObjectNotFoundException;
 
-    Boolean isDuplicated(String code, Integer id);
+    Boolean isDuplicated(String code, Long id);
 
     List<UserGroupDTO> findAll();
+
 }

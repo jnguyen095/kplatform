@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * @author Nguyen Hai Vien
+ * @author Nguyen Nhu Khang
  *
  */
 public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
@@ -29,7 +29,7 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
         	clearAuthenticationAttributes(request);
             String targetUrl = getDefaultTargetUrl();
 
-            logger.debug("Redirecting to DefaultSavedRequest Url: " + targetUrl);
+            logger.info("Redirecting to DefaultSavedRequest Url: " + targetUrl);
             getRedirectStrategy().sendRedirect(request, response, targetUrl);
         }
     }

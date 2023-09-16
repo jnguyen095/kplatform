@@ -14,9 +14,9 @@ import javax.persistence.Query;
  * To change this template use File | Settings | File Templates.
  */
 @Stateless(name = "UserGroupSessionEJB")
-public class UserGroupSessionBean extends AbstractSessionBean<UserGroupEntity, Integer> implements UserGroupLocalBean {
+public class UserGroupSessionBean extends AbstractSessionBean<UserGroupEntity, Long> implements UserGroupLocalBean {
     @Override
-    public Boolean isDuplicated(String code, Integer id) {
+    public Boolean isDuplicated(String code, Long id) {
         StringBuffer sql = new StringBuffer("FROM UserGroupEntity ug WHERE ug.code = :code");
         if(id != null){
             sql.append(" AND ug.userGroupId <> :id");

@@ -4,6 +4,7 @@ package com.test.controller;
 import com.test.business.ProductManagementLocalBean;
 import com.test.command.ProductCommand;
 import com.test.dto.ProductDTO;
+import com.test.security.util.SecurityUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,16 @@ public class HomeController extends ApplicationObjectSupport{
     public ModelAndView home(@ModelAttribute(value = "item")ProductCommand command){
         ModelAndView mav = new ModelAndView("home");
         Map<String, Object> properties = new HashedMap();
-        Object[] objects = productManagementLocalBean.searchByProperties(properties, command.getSortExpression(), command.getSortDirection(), command.getFirstItem(), command.getMaxPageItems());
-        mav.addObject("products", (List<ProductDTO>)objects[1]);
+        //Object[] objects = productManagementLocalBean.searchByProperties(properties, command.getSortExpression(), command.getSortDirection(), command.getFirstItem(), command.getMaxPageItems());
+        //mav.addObject("products", (List<ProductDTO>)objects[1]);
         mav.addObject("name", "Khang Nguyen");
+        return mav;
+    }
+
+    @RequestMapping("/admin/home.html")
+    public ModelAndView adminHome(@ModelAttribute(value = "item")ProductCommand command){
+        ModelAndView mav = new ModelAndView("home");
+        mav.addObject("name", SecurityUtils.getPrincipal().getUserName());
         return mav;
     }
 

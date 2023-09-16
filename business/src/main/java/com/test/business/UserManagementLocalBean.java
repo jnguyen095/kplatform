@@ -20,7 +20,9 @@ public interface UserManagementLocalBean {
 
     UserDTO saveOrUpdate(UserDTO pojo) throws DuplicateKeyException;
 
-    UserDTO findById(Integer userGroupId) throws ObjectNotFoundException;
+    UserDTO findById(Long userGroupId) throws ObjectNotFoundException;
 
-    Boolean isDuplicated(String userName, Integer id);
+    Boolean isDuplicated(String userName, Long id);
+
+    UserDTO findByUserName(String username) throws ObjectNotFoundException;
 }

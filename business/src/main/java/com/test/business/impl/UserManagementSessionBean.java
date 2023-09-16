@@ -45,7 +45,7 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
     @Override
     public UserDTO saveOrUpdate(UserDTO pojo) throws DuplicateKeyException {
         UserEntity entity = DozerSingletonMapper.getInstance().map(pojo, UserEntity.class);
-        Integer userId = entity.getUserId();
+        Long userId = entity.getUserId();
         Timestamp now = new Timestamp(System.currentTimeMillis());
         if(userId != null){
             entity.setUpdatedDate(now);
@@ -58,13 +58,22 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
     }
 
     @Override
-    public UserDTO findById(Integer userId) throws ObjectNotFoundException {
+    public UserDTO findById(Long userId) throws ObjectNotFoundException {
         UserEntity entity = userLocalBean.findById(userId);
         return DozerSingletonMapper.getInstance().map(entity, UserDTO.class);
     }
 
     @Override
-    public Boolean isDuplicated(String userName, Integer id) {
+    public Boolean isDuplicated(String userName, Long id) {
         return userLocalBean.isDuplicated(userName, id);
+    }
+
+    @Override
+    public UserDTO findByUserName(String username) throws ObjectNotFoundException {
+        UserEntity entity = userLocalBean.findByUserNameAndActive(username);
+        if(entity != null) {
+            return DozerSingletonMapper.getInstance().map(entity, UserDTO.class);
+        }
+        return null;
     }
 }

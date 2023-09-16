@@ -6,7 +6,7 @@ package com.test.security;
 import java.security.MessageDigest;
 
 /**
- * @author Nguyen Hai Vien
+ * @author Nguyen Nhu Khang
  *
  */
 public class MD5Utils {

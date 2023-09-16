@@ -14,9 +14,9 @@ import javax.persistence.Query;
  * To change this template use File | Settings | File Templates.
  */
 @Stateless(name = "UserSessionEJB")
-public class UserSessionBean extends AbstractSessionBean<UserEntity, Integer> implements UserLocalBean {
+public class UserSessionBean extends AbstractSessionBean<UserEntity, Long> implements UserLocalBean {
     @Override
-    public Boolean isDuplicated(String userName, Integer id) {
+    public Boolean isDuplicated(String userName, Long id) {
         StringBuffer sql = new StringBuffer("FROM UserEntity ug WHERE ug.userName = :userName");
         if(id != null){
             sql.append(" AND ug.userId <> :id");
@@ -27,5 +27,20 @@ public class UserSessionBean extends AbstractSessionBean<UserEntity, Integer> im
             query.setParameter("id", id);
         }
         return query.getResultList().size() > 0;
+    }
+
+    @Override
+    public UserEntity findByUserNameAndActive(String userName) {
+        StringBuffer sql = new StringBuffer("FROM UserEntity ug WHERE ug.userName = :userName AND ug.status = :status");
+
+        Query query = entityManager.createQuery(sql.toString());
+        query.setParameter("userName", userName);
+        query.setParameter("status", Boolean.TRUE);
+
+        Object ob = query.getSingleResult();
+        if(ob != null){
+            return (UserEntity)ob;
+        }
+        return null;
     }
 }
