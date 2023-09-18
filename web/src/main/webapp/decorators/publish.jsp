@@ -142,7 +142,7 @@
         </a>
 
         <a href="#" class="box">
-            <img src="image/menu-6.png" alt="">
+            <img src="<c:url value="/layout/publish/image/menu-6.png"/>" alt="">
             <div class="content">
                 <h3>our special coffee</h3>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, expedita!</p>
