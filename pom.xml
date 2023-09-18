@@ -22,6 +22,7 @@
         <jstl.version>1.2</jstl.version>
         <version.java>1.7</version.java>
         <version.spring.security>3.2.8.RELEASE</version.spring.security>
+        <commons.fileupload.version>1.2.1</commons.fileupload.version>
     </properties>
 
   <dependencies>

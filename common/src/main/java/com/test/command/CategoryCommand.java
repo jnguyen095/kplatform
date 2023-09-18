@@ -14,4 +14,5 @@ public class CategoryCommand extends AbstractCommand<CategoryDTO> {
     public CategoryCommand(){
         this.pojo = new CategoryDTO();
     }
+
 }
