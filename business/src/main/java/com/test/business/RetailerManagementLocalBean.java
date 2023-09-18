@@ -5,6 +5,7 @@ import com.test.dto.RetailerDTO;
 import javax.ejb.DuplicateKeyException;
 import javax.ejb.Local;
 import javax.ejb.ObjectNotFoundException;
+import java.util.List;
 import java.util.Map;
 
 @Local
@@ -16,4 +17,6 @@ public interface RetailerManagementLocalBean {
     RetailerDTO saveOrUpdate(RetailerDTO pojo) throws DuplicateKeyException, ObjectNotFoundException;
 
     RetailerDTO findById(Long retailerId) throws ObjectNotFoundException;
+
+    List<RetailerDTO> findAllActive();
 }

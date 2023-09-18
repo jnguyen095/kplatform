@@ -1,12 +1,15 @@
 package com.test.controller.admin;
 
 import com.test.Constants;
+import com.test.business.RetailerManagementLocalBean;
 import com.test.business.UserGroupManagementLocalBean;
 import com.test.business.UserManagementLocalBean;
 import com.test.command.UserCommand;
+import com.test.dto.RetailerDTO;
 import com.test.dto.UserDTO;
 import com.test.dto.UserGroupDTO;
 import com.test.security.DesEncrypterUtils;
+import com.test.security.util.SecurityUtils;
 import com.test.utils.RequestUtil;
 import com.test.validator.UserValidator;
 import org.apache.commons.lang.StringUtils;
@@ -40,6 +43,8 @@ public class UserController extends ApplicationObjectSupport {
     private UserManagementLocalBean userManagementLocalBean;
     @Autowired
     private UserGroupManagementLocalBean userGroupManagementLocalBean;
+    @Autowired
+    private RetailerManagementLocalBean retailerManagementLocalBean;
 
     @RequestMapping("/admin/user/list.html")
     public ModelAndView list(@ModelAttribute(value = Constants.LIST_MODEL_KEY)UserCommand command, HttpServletRequest request){
@@ -59,6 +64,11 @@ public class UserController extends ApplicationObjectSupport {
                 try{
                     String passwordEncode = DesEncrypterUtils.getInstance().encrypt(command.getPojo().getPassword());
                     command.getPojo().setPassword(passwordEncode);
+                    if(SecurityUtils.getRetailerId() != null) {
+                        RetailerDTO retailer = new RetailerDTO();
+                        retailer.setRetailerId(SecurityUtils.getRetailerId());
+                        command.getPojo().setRetailer(retailer);
+                    }
                     userManagementLocalBean.saveOrUpdate(command.getPojo());
                     mav.addObject(Constants.MESSAGE_RESPONSE, this.getMessageSourceAccessor().getMessage("save.success"));
                     mav = new ModelAndView("redirect:/admin/user/list.html");
@@ -80,6 +90,8 @@ public class UserController extends ApplicationObjectSupport {
         }
         List<UserGroupDTO> userGroups = userGroupManagementLocalBean.findAll();
         mav.addObject("userGroups", userGroups);
+        List<RetailerDTO> retailers = retailerManagementLocalBean.findAllActive();
+        mav.addObject("retailers", retailers);
         mav.addObject(Constants.FORM_MODEL_KEY, command);
         return mav;
     }

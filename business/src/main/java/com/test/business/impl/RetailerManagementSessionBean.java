@@ -66,4 +66,14 @@ public class RetailerManagementSessionBean implements RetailerManagementLocalBea
         RetailerEntity entity = retailerLocalBean.findById(retailerId);
         return DozerSingletonMapper.getInstance().map(entity, RetailerDTO.class);
     }
+
+    @Override
+    public List<RetailerDTO> findAllActive() {
+        List<RetailerEntity> tableNameEntities = retailerLocalBean.findAllActive();
+        List<RetailerDTO> retailerDTOS = new ArrayList<>();
+        for(RetailerEntity tableNameEntity : tableNameEntities){
+            retailerDTOS.add(DozerSingletonMapper.getInstance().map(tableNameEntity, RetailerDTO.class));
+        }
+        return retailerDTOS;
+    }
 }

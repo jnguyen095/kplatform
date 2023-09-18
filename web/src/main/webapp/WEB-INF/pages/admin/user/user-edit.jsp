@@ -21,9 +21,18 @@
                                 <div class="form-group">
                                     <label><fmt:message key="usergroup.title"/></label>
                                     <form:select path="pojo.userGroup.userGroupId">
+                                        <form:option value=""><fmt:message key="user.select.group"/></form:option>
                                         <form:options items="${userGroups}" itemValue="userGroupId" itemLabel="groupName"></form:options>
                                     </form:select>
                                     <form:errors path="pojo.userGroup.userGroupId" cssClass="error-inline"/>
+                                </div>
+                                <div class="form-group">
+                                    <label><fmt:message key="retailer.name"/></label>
+                                    <form:select path="pojo.retailer.retailerId">
+                                        <form:option value=""><fmt:message key="retailer.select"/></form:option>
+                                        <form:options items="${retailers}" itemValue="retailerId" itemLabel="name"></form:options>
+                                    </form:select>
+                                    <form:errors path="pojo.retailer.retailerId" cssClass="error-inline"/>
                                 </div>
                                 <div class="form-group">
                                     <label><fmt:message key="user.userName"/></label>
