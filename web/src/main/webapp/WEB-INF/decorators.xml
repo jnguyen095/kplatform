@@ -5,8 +5,15 @@
         <pattern>/fckeditor**</pattern>
         <pattern>/ajax/**</pattern>
     </excludes>
-    <decorator name="admin" page="adminLayout.jsp">
+    <decorator name="customer" page="publish.jsp">
         <pattern>/*</pattern>
+    </decorator>
+    <decorator name="admin" page="adminLayout.jsp">
+        <pattern>/admin*</pattern>
+        <pattern>/sysadmin*</pattern>
+        <pattern>/cashier*</pattern>
+        <pattern>/chef*</pattern>
+        <pattern>/waiter*</pattern>
     </decorator>
     <decorator name="login" page="loginLayout.jsp">
         <pattern>/login.*</pattern>

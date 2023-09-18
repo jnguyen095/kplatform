@@ -24,27 +24,51 @@
                         <div class="col-lg-6">
                             <c:url value="/admin/category/edit.html" var="formUrl"/>
                             <form:form action="${formUrl}" commandName="command">
-                                <div class="form-group">
-                                    <label><fmt:message key="category.name"/></label>
-                                    <input name="name" class="form-control">
+                                <div class="treeview w-20 border">
+                                    <h6 class="pt-3 pl-3">Folders</h6>
+                                    <hr>
+                                    <ul class="mb-1 pl-3 pb-2">
+                                        <li><i class="fas fa-angle-right rotate"></i>
+                                            <span><i class="far fa-envelope-open ic-w mx-1"></i>Mail</span>
+                                            <ul class="nested">
+                                                <li><i class="far fa-bell ic-w mr-1"></i>Offers</li>
+                                                <li><i class="far fa-address-book ic-w mr-1"></i>Contacts</li>
+                                                <li><i class="fas fa-angle-right rotate"></i>
+                                                    <span><i class="far fa-calendar-alt ic-w mx-1"></i>Calendar</span>
+                                                    <ul class="nested">
+                                                        <li><i class="far fa-clock ic-w mr-1"></i>Deadlines</li>
+                                                        <li><i class="fas fa-users ic-w mr-1"></i>Meetings</li>
+                                                        <li><i class="fas fa-basketball-ball ic-w mr-1"></i>Workouts</li>
+                                                        <li><i class="fas fa-mug-hot ic-w mr-1"></i>Events</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><i class="fas fa-angle-right rotate"></i>
+                                            <span><i class="far fa-folder-open ic-w mx-1"></i>Inbox</span>
+                                            <ul class="nested">
+                                                <li><i class="far fa-folder-open ic-w mr-1"></i>Admin</li>
+                                                <li><i class="far fa-folder-open ic-w mr-1"></i>Corporate</li>
+                                                <li><i class="far fa-folder-open ic-w mr-1"></i>Finance</li>
+                                                <li><i class="far fa-folder-open ic-w mr-1"></i>Other</li>
+                                            </ul>
+                                        </li>
+                                        <li><i class="fas fa-angle-right rotate"></i>
+                                            <span><i class="far fa-gem ic-w mx-1"></i>Favourites</span>
+                                            <ul class="nested">
+                                                <li><i class="fas fa-pepper-hot ic-w mr-1"></i>Restaurants</li>
+                                                <li><i class="far fa-eye ic-w mr-1"></i>Places</li>
+                                                <li><i class="fas fa-gamepad ic-w mr-1"></i>Games</li>
+                                                <li><i class="fas fa-cocktail ic-w mr-1"></i>Coctails</li>
+                                                <li><i class="fas fa-pizza-slice ic-w mr-1"></i>Food</li>
+                                            </ul>
+                                        </li>
+                                        <li><i class="far fa-comment ic-w mr-1"></i>Notes</li>
+                                        <li><i class="fas fa-cogs ic-w mr-1"></i>Settings</li>
+                                        <li><i class="fas fa-desktop ic-w mr-1"></i>Devices</li>
+                                        <li><i class="fas fa-trash-alt ic-w mr-1"></i>Deleted Items</li>
+                                    </ul>
                                 </div>
-                                <div class="form-group">
-                                    <label><fmt:message key="category.url"/></label>
-                                    <input name="url" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label><fmt:message key="label.status"/></label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="active" value="0" checked><fmt:message key="label.active"/>
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="active" value="1"><fmt:message key="label.inactive"/>
-                                    </label>
-                                </div>
-
-                                <input type="hidden" name="crudaction" value="insert-update"/>
-                                <button type="reset" class="btn btn-default"><fmt:message key="button.reset"/></button>
-                                <button type="submit" class="btn btn-primary"><fmt:message key="button.submit"/></button>
                             </form:form>
                         </div>
                     </div>
@@ -52,5 +76,13 @@
             </div>
         </div>
     </div>
+
+    <script src="<c:url value="/layout/bootstrap/mdb.min.js"/>" type="application/javascript"></script>
+    <script src="<c:url value="/layout/bootstrap/mdb.min.css"/>" type="text/css"></script>
+    <script>
+        $(document).ready(function() {
+            $('.treeview').mdbTreeview();
+        });
+    </script>
 </body>
 </html>

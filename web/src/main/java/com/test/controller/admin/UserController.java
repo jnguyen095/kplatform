@@ -62,8 +62,10 @@ public class UserController extends ApplicationObjectSupport {
             userValidator.validate(command, bindingResult);
             if(!bindingResult.hasErrors()){
                 try{
-                    String passwordEncode = DesEncrypterUtils.getInstance().encrypt(command.getPojo().getPassword());
-                    command.getPojo().setPassword(passwordEncode);
+                    if(StringUtils.isNotBlank(command.getPojo().getPassword())) {
+                        String passwordEncode = DesEncrypterUtils.getInstance().encrypt(command.getPojo().getPassword());
+                        command.getPojo().setPassword(passwordEncode);
+                    }
                     if(SecurityUtils.getRetailerId() != null) {
                         RetailerDTO retailer = new RetailerDTO();
                         retailer.setRetailerId(SecurityUtils.getRetailerId());
@@ -81,8 +83,10 @@ public class UserController extends ApplicationObjectSupport {
         if(command.getPojo().getUserId() != null){
             try{
                 UserDTO edit = userManagementLocalBean.findById(command.getPojo().getUserId());
-                String passwordDecode = DesEncrypterUtils.getInstance().decrypt(edit.getPassword());
-                edit.setPassword(passwordDecode);
+                if(StringUtils.isNotBlank(edit.getPassword())) {
+                    String passwordDecode = DesEncrypterUtils.getInstance().decrypt(edit.getPassword());
+                    edit.setPassword(passwordDecode);
+                }
                 command.setPojo(edit);
             }catch (ObjectNotFoundException e){
                 mav.addObject(Constants.MESSAGE_RESPONSE, this.getMessageSourceAccessor().getMessage("error.unexpected"));

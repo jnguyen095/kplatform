@@ -26,6 +26,10 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- jQuery -->
+    <script src="<c:url value="/layout/jquery/jquery.min.js"/>"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<c:url value="/layout/bootstrap/bootstrap.min.js"/>"></script>
     <decorator:head/>
 </head>
 
@@ -242,7 +246,7 @@
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> Hi</a>
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> Hi <security:authentication property="retailerName"/></a>
                     </li>
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
@@ -403,10 +407,7 @@
 
 </div>
 
-<!-- jQuery -->
-<script src="<c:url value="/layout/jquery/jquery.min.js"/>"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="<c:url value="/layout/bootstrap/bootstrap.min.js"/>"></script>
+
 <!-- Metis Menu Plugin JavaScript -->
 <script src="<c:url value="/layout/metisMenu/metisMenu.js"/>"></script>
 <!-- Custom Theme JavaScript -->
