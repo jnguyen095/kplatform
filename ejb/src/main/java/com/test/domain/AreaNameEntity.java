@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 @Entity
 public class AreaNameEntity {
     private Long areaNameId;
+    private RetailerEntity retailer;
     private String areaName;
     private Boolean status;
     private Timestamp createdDate;
@@ -61,5 +62,15 @@ public class AreaNameEntity {
 
     public void setModifiedDate(Timestamp modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    @ManyToOne
+    @javax.persistence.JoinColumn(name = "RetailerId")
+    public RetailerEntity getRetailer() {
+        return retailer;
+    }
+
+    public void setRetailer(RetailerEntity retailer) {
+        this.retailer = retailer;
     }
 }

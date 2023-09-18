@@ -276,6 +276,15 @@
                         <a href="<c:url value="/home.html"/>"><i class="fa fa-dashboard fa-fw"></i> <fmt:message key="menu.dashboard"/></a>
                     </li>
                     <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> <fmt:message key="sysadmin.menu"/><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<c:url value="/sysadmin/retailer/list.html"/>"><fmt:message key="retailer.title"/></a>
+                                <a href="<c:url value="/sysadmin/usergroup/list.html"/>"><fmt:message key="usergroup.title"/></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> <fmt:message key="menu.admin"/><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -292,8 +301,6 @@
                                     [CASHIER]
                                 </security:authorize>
 
-                                <a href="<c:url value="/sysadmin/retailer/list.html"/>"><fmt:message key="retailer.title"/></a>
-                                <a href="<c:url value="/admin/usergroup/list.html"/>"><fmt:message key="usergroup.title"/></a>
                                 <a href="<c:url value="/admin/user/list.html"/>"><fmt:message key="user.title"/></a>
                                 <a href="<c:url value="/admin/category/list.html"/>"><fmt:message key="category.title"/></a>
                                 <a href="<c:url value="/admin/area-name/list.html"/>"><fmt:message key="areaname.title"/></a>

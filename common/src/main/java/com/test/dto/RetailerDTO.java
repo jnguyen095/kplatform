@@ -13,6 +13,13 @@ public class RetailerDTO implements Serializable {
     private Timestamp createdDate;
     private Timestamp modifiedDate;
 
+    public RetailerDTO(Long retailerId){
+        this.retailerId = retailerId;
+    }
+    public RetailerDTO(){
+
+    }
+
     public Long getRetailerId() {
         return retailerId;
     }

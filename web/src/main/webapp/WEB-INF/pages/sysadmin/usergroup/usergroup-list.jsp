@@ -12,9 +12,9 @@
                         <c:if test="${!empty messageResponse}">
                             <div class="alert alert-success">${messageResponse}</div>
                         </c:if>
-                        <c:url var="formUrl" value="/admin/usergroup/list.html"/>
+                        <c:url var="formUrl" value="/sysadmin/usergroup/list.html"/>
                         <div class="buttons">
-                            <a href="<c:url value="/admin/usergroup/edit.html"/>"><button type="button" class="btn btn-primary"><fmt:message key="button.add"/> </button></a>
+                            <a href="<c:url value="/sysadmin/usergroup/edit.html"/>"><button type="button" class="btn btn-primary"><fmt:message key="button.add"/> </button></a>
                         </div>
                         <form:form action="${formUrl}" commandName="items" role="form" id="userGroupForm" cssClass="form-horizontal">
                             <display:table name="items.listResult" cellspacing="0" cellpadding="0" requestURI="${formUrl}"
@@ -25,7 +25,7 @@
                                 <display:column headerClass="table_header sorting" property="groupName" sortName="groupName" sortable="true" titleKey="label.name" />
 
                                 <display:column headerClass="col-actions" class="col-actions" titleKey="label.action">
-                                    <a href="<c:url value="/admin/usergroup/edit.html?pojo.userGroupId=${tableList.userGroupId}"/>"> <i class="fa fa-edit"></i></a>
+                                    <a href="<c:url value="/sysadmin/usergroup/edit.html?pojo.userGroupId=${tableList.userGroupId}"/>"> <i class="fa fa-edit"></i></a>
                                 </display:column>
 
                                 <display:setProperty name="paging.banner.item_name" value="nhóm người dùng"/>

@@ -22,7 +22,7 @@ public interface UserManagementLocalBean {
 
     UserDTO findById(Long userGroupId) throws ObjectNotFoundException;
 
-    Boolean isDuplicated(String userName, Long id);
+    Boolean isDuplicated(String userName, Long retailerId, Long userId);
 
     UserDTO findByUserName(String username, String retailerCode) throws ObjectNotFoundException;
 }

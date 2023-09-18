@@ -15,5 +15,5 @@ public interface TableNameManagementLocalBean {
 
     TableNameDTO findById(Long tableNameId) throws ObjectNotFoundException;
 
-    Boolean isDuplicated(String tableName, Long id);
+    Boolean isDuplicated(String tableName, Long areaNameId, Long tableNameId);
 }

@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 public class AreaNameDTO implements Serializable {
     private Long areaNameId;
+    private RetailerDTO retailer;
     private String areaName;
     private Boolean status;
     private Timestamp createdDate;
@@ -48,5 +49,13 @@ public class AreaNameDTO implements Serializable {
 
     public void setUpdatedDate(Timestamp updatedDate) {
         this.updatedDate = updatedDate;
+    }
+
+    public RetailerDTO getRetailer() {
+        return retailer;
+    }
+
+    public void setRetailer(RetailerDTO retailer) {
+        this.retailer = retailer;
     }
 }

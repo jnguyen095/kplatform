@@ -24,6 +24,7 @@
                                            pagesize="${items.maxPageItems}" export="false" class="table table-striped table-bordered table-hover dataTable no-footer">
 
                                 <display:column headerClass="table_header sorting" property="userName" sortName="userName" sortable="true" titleKey="user.userName" />
+                                <display:column headerClass="table_header" property="retailer.code" sortName="retailer.code" sortable="true" titleKey="retailer.code" />
                                 <display:column headerClass="table_header" property="userGroup.groupName" sortName="userGroup.groupName" sortable="true" titleKey="usergroup.title" />
 
                                 <display:column headerClass="table_header" property="email" sortName="email" sortable="true" titleKey="user.email" />

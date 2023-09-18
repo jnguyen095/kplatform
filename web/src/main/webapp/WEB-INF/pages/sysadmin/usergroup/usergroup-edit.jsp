@@ -16,7 +16,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-6">
-                            <c:url value="/admin/usergroup/edit.html" var="formUrl"/>
+                            <c:url value="/sysadmin/usergroup/edit.html" var="formUrl"/>
                             <form:form action="${formUrl}" commandName="item">
                                 <div class="form-group">
                                     <label><fmt:message key="label.code"/></label>
@@ -30,7 +30,7 @@
                                 </div>
 
                                 <input type="hidden" name="crudaction" value="insert-update"/>
-                                <a class="btn btn-default" href="<c:url value="/admin/usergroup/list.html"/>"><fmt:message key="button.back"/></a>
+                                <a class="btn btn-default" href="<c:url value="/sysadmin/usergroup/list.html"/>"><fmt:message key="button.back"/></a>
                                 <button type="submit" class="btn btn-primary"><fmt:message key="button.submit"/></button>
                                 <form:hidden path="pojo.userGroupId"/>
                             </form:form>

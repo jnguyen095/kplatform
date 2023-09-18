@@ -36,9 +36,10 @@ public class AreaNameValidator implements Validator {
 
     private void checkUniqueCode(AreaNameCommand command, Errors errors) {
         String areaName = command.getPojo().getAreaName();
-        Long id = command.getPojo().getAreaNameId();
+        Long areaNameId = command.getPojo().getAreaNameId();
+        Long retailerId = command.getPojo().getRetailer().getRetailerId();
         if(StringUtils.isNotBlank(areaName)){
-            Boolean isDuplicated = areaNameManagementLocalBean.isDuplicated(areaName, id);
+            Boolean isDuplicated = areaNameManagementLocalBean.isDuplicated(areaName, retailerId, areaNameId);
             if(isDuplicated){
                 errors.rejectValue("pojo.areaName", "duplicated.message", new Object[]{areaName}, null);
             }

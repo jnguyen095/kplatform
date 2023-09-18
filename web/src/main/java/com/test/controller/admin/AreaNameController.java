@@ -4,6 +4,8 @@ import com.test.Constants;
 import com.test.business.AreaNameManagementLocalBean;
 import com.test.command.AreaNameCommand;
 import com.test.dto.AreaNameDTO;
+import com.test.dto.RetailerDTO;
+import com.test.security.util.SecurityUtils;
 import com.test.utils.RequestUtil;
 import com.test.validator.AreaNameValidator;
 import org.apache.commons.lang.StringUtils;
@@ -41,6 +43,7 @@ public class AreaNameController extends ApplicationObjectSupport {
     public ModelAndView edit(@ModelAttribute(value = Constants.FORM_MODEL_KEY)AreaNameCommand command, BindingResult bindingResult){
         ModelAndView mav = new ModelAndView("admin/area-name/area-edit");
         String crudaction = command.getCrudaction();
+        command.getPojo().setRetailer(new RetailerDTO(SecurityUtils.getRetailerId()));
         if(StringUtils.isNotBlank(crudaction) && crudaction.equals(Constants.INSERT_UPDATE)){
             areaNameValidator.validate(command, bindingResult);
             if(!bindingResult.hasErrors()){

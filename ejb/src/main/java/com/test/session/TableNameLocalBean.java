@@ -16,5 +16,5 @@ import java.util.List;
 @Local
 public interface TableNameLocalBean extends GenericSessionBean<TableNameEntity, Long> {
 
-    Boolean isDuplicated(String tableName, Long id);
+    Boolean isDuplicated(String tableName, Long areaNameId, Long tableNameId);
 }

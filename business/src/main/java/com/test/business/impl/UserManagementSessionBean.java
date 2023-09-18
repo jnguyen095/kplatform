@@ -5,6 +5,7 @@ import com.test.domain.UserEntity;
 import com.test.dto.UserDTO;
 import com.test.session.UserLocalBean;
 import com.test.utils.DozerSingletonMapper;
+import org.apache.commons.lang.StringUtils;
 
 import javax.ejb.DuplicateKeyException;
 import javax.ejb.EJB;
@@ -47,9 +48,21 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
         UserEntity entity = DozerSingletonMapper.getInstance().map(pojo, UserEntity.class);
         Long userId = entity.getUserId();
         Timestamp now = new Timestamp(System.currentTimeMillis());
+        if(entity.getRetailer().getRetailerId() == null){
+            entity.setRetailer(null);
+        }
         if(userId != null){
-            entity.setUpdatedDate(now);
-            entity = userLocalBean.update(entity);
+            try {
+                UserEntity dbEntity = userLocalBean.findById(userId);
+                entity.setCreatedDate(dbEntity.getCreatedDate());
+                entity.setUpdatedDate(now);
+                if(StringUtils.isBlank(entity.getPassword())){
+                    entity.setPassword(dbEntity.getPassword());
+                }
+                entity = userLocalBean.update(entity);
+            }catch (ObjectNotFoundException ex){
+                throw new DuplicateKeyException("Not found user with Id: " + userId);
+            }
         }else{
             entity.setCreatedDate(now);
             entity = userLocalBean.save(entity);
@@ -64,8 +77,8 @@ public class UserManagementSessionBean implements UserManagementLocalBean {
     }
 
     @Override
-    public Boolean isDuplicated(String userName, Long id) {
-        return userLocalBean.isDuplicated(userName, id);
+    public Boolean isDuplicated(String userName, Long retailerid, Long userId) {
+        return userLocalBean.isDuplicated(userName, retailerid, userId);
     }
 
     @Override

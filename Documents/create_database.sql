@@ -38,25 +38,28 @@ CREATE TABLE us3r (
 	Us3rID BIGSERIAL NOT NULL PRIMARY KEY,
 	UserGroupID BIGINT NOT NULL REFERENCES UserGroup(UserGroupID),
 	RetailerId BIGINT REFERENCES Retailer(RetailerId),
-	UserName VARCHAR NOT NULL UNIQUE,
+	UserName VARCHAR NOT NULL,
 	Password VARCHAR NOT NULL,
 	Email VARCHAR(125),
 	Phone VARCHAR(125),
 	Status BOOLEAN NOT NULL DEFAULT TRUE,
 	CreatedDate TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-	ModifiedDate TIMESTAMP WITHOUT TIME ZONE
-);
+	ModifiedDate TIMESTAMP WITHOUT TIME ZONE,
 
+	UNIQUE (UserName, RetailerId)
+);
+alter table us3r add CONSTRAINT username_retailer_unique_pk UNIQUE (UserName, RetailerId);
 alter table us3r add COLUMN RetailerId BIGINT NULL REFERENCES Retailer(RetailerId);
 
 CREATE TABLE AreaName (
 	AreaNameId BIGSERIAL NOT NULL PRIMARY KEY,
 	AreaName VARCHAR NOT NULL,
+	RetailerId BIGINT NOT NULL REFERENCES Retailer(RetailerId),
 	Status BOOLEAN NOT NULL,
 	CreatedDate TIMESTAMP WITHOUT TIME ZONE NOT NULL,
 	ModifiedDate TIMESTAMP WITHOUT TIME ZONE,
 
-	UNIQUE(AreaName)
+	UNIQUE(AreaName, RetailerId)
 );
 
 CREATE TABLE TableName (
@@ -67,7 +70,5 @@ CREATE TABLE TableName (
 	CreatedDate TIMESTAMP WITHOUT TIME ZONE NOT NULL,
 	ModifiedDate TIMESTAMP WITHOUT TIME ZONE,
 
-	UNIQUE(TableName)
+	UNIQUE(TableName, AreaNameId)
 );
-
-alter table TableName add column AreaNameId BIGINT NOT NULL REFERENCES AreaName(AreaNameId);

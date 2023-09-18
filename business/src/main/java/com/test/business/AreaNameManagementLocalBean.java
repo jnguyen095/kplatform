@@ -16,7 +16,7 @@ public interface AreaNameManagementLocalBean {
 
     AreaNameDTO findById(Long areaNameId) throws ObjectNotFoundException;
 
-    Boolean isDuplicated(String areaName, Long id);
+    Boolean isDuplicated(String areaName, Long retailerId, Long areaNameId);
 
-    List<AreaNameDTO> findAllByStatus(Boolean status);
+    List<AreaNameDTO> findAllByStatus(Long retailerId, Boolean status);
 }

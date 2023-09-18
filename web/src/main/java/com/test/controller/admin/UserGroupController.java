@@ -38,17 +38,17 @@ public class UserGroupController extends ApplicationObjectSupport {
     @Autowired
     private UserGroupManagementLocalBean userGroupManagementLocalBean;
 
-    @RequestMapping("/admin/usergroup/list.html")
+    @RequestMapping("/sysadmin/usergroup/list.html")
     public ModelAndView list(@ModelAttribute(value = Constants.LIST_MODEL_KEY)UserGroupCommand command, HttpServletRequest request){
-        ModelAndView mav = new ModelAndView("admin/usergroup/usergroup-list");
+        ModelAndView mav = new ModelAndView("sysadmin/usergroup/usergroup-list");
         executeSearch(command, request);
         mav.addObject(Constants.LIST_MODEL_KEY, command);
         return mav;
     }
 
-    @RequestMapping("/admin/usergroup/edit.html")
+    @RequestMapping("/sysadmin/usergroup/edit.html")
     public ModelAndView test(@ModelAttribute(value = Constants.FORM_MODEL_KEY)UserGroupCommand command, BindingResult bindingResult){
-        ModelAndView mav = new ModelAndView("admin/usergroup/usergroup-edit");
+        ModelAndView mav = new ModelAndView("sysadmin/usergroup/usergroup-edit");
         String crudaction = command.getCrudaction();
         if(StringUtils.isNotBlank(crudaction) && crudaction.equals("insert-update")){
             userGroupValidator.validate(command, bindingResult);
@@ -56,7 +56,7 @@ public class UserGroupController extends ApplicationObjectSupport {
                 try{
                     userGroupManagementLocalBean.saveOrUpdate(command.getPojo());
                     mav.addObject(Constants.MESSAGE_RESPONSE, this.getMessageSourceAccessor().getMessage("save.success"));
-                    mav = new ModelAndView("redirect:/admin/usergroup/list.html");
+                    mav = new ModelAndView("redirect:/sysadmin/usergroup/list.html");
                 }catch (DuplicateKeyException e){
                     mav.addObject(Constants.MESSAGE_RESPONSE, this.getMessageSourceAccessor().getMessage("save.error"));
                 }

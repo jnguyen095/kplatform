@@ -73,7 +73,7 @@ public class TableNameManagementSessionBean implements TableNameManagementLocalB
     }
 
     @Override
-    public Boolean isDuplicated(String tableName, Long id) {
-        return tableNameLocalBean.isDuplicated(tableName, id);
+    public Boolean isDuplicated(String tableName, Long areaNameId, Long tableNameId) {
+        return tableNameLocalBean.isDuplicated(tableName, areaNameId, tableNameId);
     }
 }

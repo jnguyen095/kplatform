@@ -68,13 +68,13 @@ public class AreaNameManagementSessionBean implements AreaNameManagementLocalBea
     }
 
     @Override
-    public Boolean isDuplicated(String areaName, Long id) {
-        return areaNameLocalBean.isDuplicated(areaName, id);
+    public Boolean isDuplicated(String areaName, Long retailerId, Long areaNameId) {
+        return areaNameLocalBean.isDuplicated(areaName, retailerId, areaNameId);
     }
 
     @Override
-    public List<AreaNameDTO> findAllByStatus(Boolean status) {
-        List<AreaNameEntity> areaNameEntities = areaNameLocalBean.findByProperty("status", status);
+    public List<AreaNameDTO> findAllByStatus(Long retailerId, Boolean status) {
+        List<AreaNameEntity> areaNameEntities = areaNameLocalBean.findByRetailerAndStatus(retailerId, status);
         List<AreaNameDTO> areaNameDTOS = new ArrayList<>();
         for(AreaNameEntity areaNameEntity : areaNameEntities){
             areaNameDTOS.add(DozerSingletonMapper.getInstance().map(areaNameEntity, AreaNameDTO.class));

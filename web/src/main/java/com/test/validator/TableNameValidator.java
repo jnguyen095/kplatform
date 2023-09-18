@@ -38,9 +38,10 @@ public class TableNameValidator implements Validator {
 
     private void checkUniqueCode(TableNameCommand command, Errors errors) {
         String tableName = command.getPojo().getTableName();
-        Long id = command.getPojo().getTableNameId();
+        Long tableNameId = command.getPojo().getTableNameId();
+        Long areaNameId = command.getPojo().getAreaName().getAreaNameId();
         if(StringUtils.isNotBlank(tableName)){
-            Boolean isDuplicated = tableNameManagementLocalBean.isDuplicated(tableName, id);
+            Boolean isDuplicated = tableNameManagementLocalBean.isDuplicated(tableName, areaNameId, tableNameId);
             if(isDuplicated){
                 errors.rejectValue("pojo.tableName", "duplicated.message", new Object[]{tableName}, null);
             }

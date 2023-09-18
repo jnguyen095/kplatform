@@ -17,15 +17,16 @@ import javax.persistence.Query;
 @Stateless(name = "UserSessionEJB")
 public class UserSessionBean extends AbstractSessionBean<UserEntity, Long> implements UserLocalBean {
     @Override
-    public Boolean isDuplicated(String userName, Long id) {
-        StringBuffer sql = new StringBuffer("FROM UserEntity ug WHERE ug.userName = :userName");
-        if(id != null){
-            sql.append(" AND ug.userId <> :id");
+    public Boolean isDuplicated(String userName, Long retailerId, Long userId) {
+        StringBuffer sql = new StringBuffer("FROM UserEntity ug WHERE ug.userName = :userName AND ug.retailer.retailerId = :retailerId");
+        if(userId != null){
+            sql.append(" AND ug.userId <> :userId");
         }
         Query query = entityManager.createQuery(sql.toString());
         query.setParameter("userName", userName);
-        if(id != null){
-            query.setParameter("id", id);
+        query.setParameter("retailerId", retailerId);
+        if(userId != null){
+            query.setParameter("userId", userId);
         }
         return query.getResultList().size() > 0;
     }
